@@ -1,21 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using StockApp.Interfaces;
+using StockApp.Models;
 
 namespace StockApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IMyservice _myservice;
+        private readonly IFinnHubService _myservice;
+        private readonly IMapper _mapper;
 
-        public HomeController(IMyservice myservice)
+        public HomeController(IFinnHubService myservice,IMapper mapper)
         {
             _myservice = myservice;
+            _mapper = mapper;
         }
         [Route("/")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            _myservice.GetStocksAsync();
-            return View();
+            FinnHubResponse? finnhubResposne = await _myservice.GetStocksQuoteAsync(string.Empty);
+            Stock stock=_mapper.Map<Stock>(finnhubResposne);
+
+            return View(stock);
         }
 
     }
