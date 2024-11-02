@@ -2,7 +2,7 @@
 
 namespace StockApp.Models
 {
-    public class Stock
+    public class StockViewModel
     {
         public string? StockSymbol { get; set; }
         public double CurrentPrice { get; set; }

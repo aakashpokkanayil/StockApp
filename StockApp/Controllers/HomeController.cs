@@ -18,8 +18,8 @@ namespace StockApp.Controllers
         [Route("/")]
         public async Task<IActionResult> Index()
         {
-            FinnHubResponse? finnhubResposne = await _myservice.GetStocksQuoteAsync(string.Empty);
-            Stock stock=_mapper.Map<Stock>(finnhubResposne);
+            FinnHubResponseDTO? finnhubResposne = await _myservice.GetStocksQuoteAsync(string.Empty);
+            StockViewModel stock=_mapper.Map<StockViewModel>(finnhubResposne);
 
             return View(stock);
         }

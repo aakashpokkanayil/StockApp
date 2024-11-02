@@ -4,6 +4,6 @@ namespace StockApp.Interfaces
 {
     public interface IFinnHubService
     {
-         Task<FinnHubResponse> GetStocksQuoteAsync(string? stockSymbol);
+         Task<FinnHubResponseDTO> GetStocksQuoteAsync(string? stockSymbol);
     }
 }

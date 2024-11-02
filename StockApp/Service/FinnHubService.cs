@@ -17,7 +17,7 @@ namespace StockApp.Service
             _options = options.Value;
         }
 
-        public async Task<FinnHubResponse> GetStocksQuoteAsync(string? stockSymbol)
+        public async Task<FinnHubResponseDTO> GetStocksQuoteAsync(string? stockSymbol)
         {
             stockSymbol = string.IsNullOrEmpty(stockSymbol)? _options.StockSymbol: stockSymbol;
             using (HttpClient httpClient = _httpClientFactory.CreateClient())
@@ -40,8 +40,8 @@ namespace StockApp.Service
                 // read with stream reader will get response as string
                 string response =streamReader.ReadToEnd();
                 // we have to desirialize response into a dict<string,obj> using jsonserializer
-                FinnHubResponse? resposnseDict = 
-                    JsonSerializer.Deserialize<FinnHubResponse>(response);
+                FinnHubResponseDTO? resposnseDict = 
+                    JsonSerializer.Deserialize<FinnHubResponseDTO>(response);
                 
 
                 if (resposnseDict == null) throw new InvalidOperationException("Data not exists in FinnHub");

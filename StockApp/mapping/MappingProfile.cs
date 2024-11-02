@@ -7,7 +7,7 @@ namespace StockApp.mapping
     {
         public MappingProfile()
         {
-            CreateMap<FinnHubResponse, Stock>().ReverseMap();
+            CreateMap<FinnHubResponseDTO, StockViewModel>().ReverseMap();
         }
     }
 }

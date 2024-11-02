@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace StockApp.Models
 {
-    public class FinnHubResponse
+    public class FinnHubResponseDTO
     {
         [JsonPropertyName("c")]
         public double CurrentPrice { get; set; }
